@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% from "macros/render_field.html" import form_field %}
+
+{% block content %}
+    <div class="card mx-auto" style="width: 50%">
+        <div class="card-body">
+            <h5 class="card-title">Log In!</h5>
+            <br>
+            <form method="POST">
+                {{ form.csrf_token }}
+                {{ form_field(form.username) }}
+                {{ form_field(form.password) }}
+                {{ form_field(form.submit) }}
+            </form>
+        </div>
+    </div>
+{% endblock content %}

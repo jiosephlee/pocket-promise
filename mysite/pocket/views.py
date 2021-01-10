@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return render(request,'pocket/index.html')
+    return render(request,'pocket/login.html')
 
 def profile(request):
     return None
