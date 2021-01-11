@@ -1,18 +1,13 @@
-{% extends "base.html" %}
-
-{% from "macros/render_field.html" import form_field %}
+{% extends 'pocket/index.html' %}
 
 {% block content %}
-    <div class="card mx-auto" style="width: 50%">
-        <div class="card-body">
-            <h5 class="card-title">Log In!</h5>
-            <br>
-            <form method="POST">
-                {{ form.csrf_token }}
-                {{ form_field(form.username) }}
-                {{ form_field(form.password) }}
-                {{ form_field(form.submit) }}
-            </form>
-        </div>
+
+    <div class="container">
+        <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+            <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Login</button>
+        </form>
+        Don't have an account? <a href="/register" target="blank"><strong>register here</strong></a>!
     </div>
-{% endblock content %}
+{% endblock %}
