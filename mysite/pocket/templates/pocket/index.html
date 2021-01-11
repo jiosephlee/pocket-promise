@@ -1,9 +1,9 @@
-{% if nonprofit_list %}
+{% if ordered_organization_list %}
     <ul>
-    {% for nonprofit in nonprofit_list %}
-        <li><a href="/pocket/{{ nonprofit.id }}/">{{ nonprofit.nonprofit_text }}</a></li>
+    {% for organization in ordered_organization_list %}
+        <li><a href="{% url 'pocket:detail' organization.id %}">{{ organization.name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No nonprofits are available.</p>
+    <p>No organizations are available.</p>
 {% endif %}

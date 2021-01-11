@@ -1,1 +1,4 @@
-<h1>{{ nonprofit.nonprofit_text }}</h1>
+<h1>{{ organization.name }}</h1>
+
+<!--if there is an error, show it and show it nicely -->
+{% if error_message %} <p> strong{{error_message}}</strong></p>{%endif%}
