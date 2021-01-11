@@ -1,0 +1,9 @@
+{% if nonprofit_list %}
+    <ul>
+    {% for nonprofit in nonprofit_list %}
+        <li><a href="/pocket/{{ nonprofit.id }}/">{{ nonprofit.nonprofit_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No nonprofits are available.</p>
+{% endif %}
