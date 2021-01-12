@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.urls import reverse
-from .models import User,Organization
+from .models import User, Profile, Organization
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
@@ -24,8 +24,10 @@ def register(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
             username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
             login(request, user)
             return redirect("pocket:index")
 
@@ -48,15 +50,18 @@ def logout_request(request):
     return redirect("pocket:index")
 
 def login_request(request):
+    if request.user.is_authenticated:
+        return redirect('/')
     if request.method == 'POST':
         form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
+            password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(reverse('pocket:profile', args=(user.id,)))
+                return redirect("pocket:index")
+                # return HttpResponseRedirect(reverse('pocket:profile', args=(user.id,)))
             else:
                 messages.error(request, "Invalid username or password.")
         else:

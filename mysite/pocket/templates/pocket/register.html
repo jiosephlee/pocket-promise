@@ -6,10 +6,11 @@
     <br>
     <form method="POST">
         {% csrf_token %}
-        {% crispy form %}
-        <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Sign Up</button>
+        {{form | crispy }}
+        <button type="submit" class="btn btn-outline-info">Sign Up</button>
+        If you already have an account <a href="/login" target="blank"><strong>login</strong></a> instead.
     </form>
 
-    <span> </span>If you already have an account <a href="/login" target="blank"><strong>login</strong></a> instead.
+
 
 {% endblock %}
