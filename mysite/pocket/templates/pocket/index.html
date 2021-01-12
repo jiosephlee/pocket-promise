@@ -1,9 +1,15 @@
-{% if ordered_organization_list %}
-    <ul>
-    {% for organization in ordered_organization_list %}
-        <li><a href="{% url 'pocket:detail' organization.id %}">{{ organization.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No organizations are available.</p>
-{% endif %}
+{% extends "pocket/base.html" %}
+
+{% block content %}
+
+  {% if ordered_organization_list %}
+      <ul>
+      {% for organization in ordered_organization_list %}
+          <li><a href="{% url 'pocket:detail' organization.id %}">{{ organization.name }}</a></li>
+      {% endfor %}
+      </ul>
+  {% else %}
+      <p>No organizations are available.</p>
+  {% endif %}
+
+{% endblock %}
